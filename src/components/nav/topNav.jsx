@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import render from 'react-dom'
+import './topNav.scss'
 
 export default class TopNavigation extends Component{
     constructor(props){
