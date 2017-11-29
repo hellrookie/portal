@@ -3,6 +3,7 @@ fs = require('fs');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CleanWebpackPlugin = require('clean-webpack-plugin');
 var webpack = require('webpack');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var entries = {
     vendorDOM:['react', 'react-dom'],
@@ -52,7 +53,8 @@ var plugins = [
             root: __dirname,
             verbose: true,
             dry: false,
-        })
+        }),
+    new ExtractTextPlugin('style.css'),
 ];
 
 function getPlugins() {
@@ -99,7 +101,15 @@ module.exports = {
                         options: '$'
                     }
                 ]
-            }
+            },
+            {
+                test:   /\.(eot|woff|woff2|svg|ttf)([\?]?.*)$/,
+                loader:
+                    {
+                        loader: 'url-loader',
+                        options: 'limit=1000000'
+                    }
+            },
         ]
     },
     plugins: getPlugins(),
