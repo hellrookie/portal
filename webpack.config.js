@@ -48,7 +48,7 @@ var plugins = [
         name: 'manifest',
         chunks: ['vendorDOM', 'vendorThird'],
     }),
-    new CleanWebpackPlugin(['build'],
+    new CleanWebpackPlugin(['build/js'],
         {
             root: __dirname,
             verbose: true,
@@ -75,8 +75,7 @@ module.exports = {
     entry: getEntry('./src', '.jsx'),
     output: {
         path: path.join(__dirname, "build/js/"),
-        //publicPath: "build/js/",
-        filename: "[name].[chunkhash].js",
+        filename: "[name].js",
     },
     module: {
         rules: [
@@ -114,4 +113,10 @@ module.exports = {
     },
     plugins: getPlugins(),
     devtool: 'source-map',
+    devServer: {
+        contentBase: path.join(__dirname, 'build'),
+        port: 20001,
+        publicPath: "/js/",
+        openPage: 'home.html',
+    }
 };
