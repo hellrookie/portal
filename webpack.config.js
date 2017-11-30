@@ -1,6 +1,7 @@
 var path = require('path');
 fs = require('fs');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 var CleanWebpackPlugin = require('clean-webpack-plugin');
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -48,13 +49,14 @@ var plugins = [
         name: 'manifest',
         chunks: ['vendorDOM', 'vendorThird'],
     }),
-    new CleanWebpackPlugin(['build/js'],
+    new CleanWebpackPlugin(['build'],
         {
             root: __dirname,
             verbose: true,
             dry: false,
         }),
     new ExtractTextPlugin('style.css'),
+    new HtmlWebpackHarddiskPlugin(),
 ];
 
 function getPlugins() {
@@ -64,7 +66,8 @@ function getPlugins() {
                 template: path.join(__dirname, 'template.html'),
                 filename: '../' + entryFiles[pos] + '.html',
                 chunks: ['manifest', 'vendorDOM', 'vendorThird', entryFiles[pos]],
-                chunksSortMode: 'manual'
+                chunksSortMode: 'manual',
+                alwaysWriteToDisk: true,
             }));
     }
     return plugins;
