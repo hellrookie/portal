@@ -34,7 +34,7 @@ function getEntry(folderPath, ext) {
     console.log("************* begin to find entry files *****************");
     finder(folderPath);
     console.log("************* find entry files finish *****************");
-    if (entries.length <= 0) {
+    if (entryFiles.length <= 0) {
         console.log('Warning: no file find to build!!!');
     }
     return entries;
@@ -48,8 +48,12 @@ var plugins = [
     new webpack.optimize.CommonsChunkPlugin({
         name: 'manifest',
         chunks: ['vendorDOM', 'vendorThird'],
+        chunksSortMode: function (a, b) {
+            const orders = ['manifest', 'vendor', 'main'];
+            return orders.indexOf(a.names[0]) - orders.indexOf(b.names[0]);
+        }
     }),
-    new CleanWebpackPlugin(['build'],
+    new CleanWebpackPlugin(['dist'],
         {
             root: __dirname,
             verbose: true,
@@ -63,12 +67,13 @@ function getPlugins() {
     for (var pos in entryFiles) {
         plugins.push(
             new HtmlWebpackPlugin({
-                template: path.join(__dirname, 'template.html'),
-                filename: '../' + entryFiles[pos] + '.html',
-                chunks: ['manifest', 'vendorDOM', 'vendorThird', entryFiles[pos]],
-                chunksSortMode: 'manual',
-                alwaysWriteToDisk: true,
-            }));
+            template: path.join(__dirname, 'template.html'),
+            title: entryFiles[pos],
+            filename: entryFiles[pos] + '.html',
+            chunks: ['manifest', 'vendorThird', 'vendorDOM', entryFiles[pos]],
+            chunksSortMode: 'manual',
+            alwaysWriteToDisk: true,
+        }));
     }
     return plugins;
 }
@@ -77,8 +82,9 @@ function getPlugins() {
 module.exports = {
     entry: getEntry('./src', '.jsx'),
     output: {
-        path: path.join(__dirname, "build/js/"),
-        filename: "[name].js",
+        path: path.join(__dirname, "dist"),
+        filename: "js/[name].js",
+        publicPath: "/portal/dist/"
     },
     module: {
         rules: [
@@ -112,14 +118,25 @@ module.exports = {
                         options: 'limit=1000000'
                     }
             },
+            {
+                test:   /\.(jpg|png)$/,
+                loader:
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            limit: 8192,
+                            name: './images/[name].[ext]',
+                        }
+                    }
+            },
         ]
     },
     plugins: getPlugins(),
     devtool: 'source-map',
     devServer: {
-        contentBase: path.join(__dirname, 'build'),
+        contentBase: path.join(__dirname, 'dist'),
         port: 20001,
-        publicPath: "/js/",
         openPage: 'home.html',
+        publicPath: '/portal/dist/'
     }
 };
