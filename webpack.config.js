@@ -84,7 +84,6 @@ module.exports = {
     output: {
         path: path.join(__dirname, "dist"),
         filename: "js/[name].js",
-        publicPath: "/portal/dist/"
     },
     module: {
         rules: [
@@ -137,6 +136,5 @@ module.exports = {
         contentBase: path.join(__dirname, 'dist'),
         port: 20001,
         openPage: 'home.html',
-        publicPath: '/portal/dist/'
     }
 };

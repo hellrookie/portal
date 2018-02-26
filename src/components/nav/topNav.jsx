@@ -14,8 +14,8 @@ export default class TopNavigation extends Component{
                 <div className="row">
                     <div className="hidden-xs">
                         <ul className="nav nav-pills">
-                            <li className="active"><a href="/home.html">Hellrookie</a></li>
-                            <li><a href="/commonTool.html">Common Tool</a></li>
+                            <li className="active"><a href="./home.html">Hellrookie</a></li>
+                            <li><a href="./commonTool.html">Common Tool</a></li>
                             <li><a href="#">Notes</a></li>
                             <li><a href="#">3</a></li>
                         </ul>
