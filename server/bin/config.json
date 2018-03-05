@@ -1,0 +1,26 @@
+{
+  "slider": {
+    "items": [
+      {
+        "link": "http://www.bing.com",
+        "content": "单行注释跟JavaScript语言中的注释一样，使用又斜杠（ //），但单行注释不会输入到CSS中。",
+        "img": "../../resource/images/1.jpg"
+      },
+      {
+        "link": "http://www.google.com",
+        "content": "N. Korean defector at State of Union touts Trump",
+        "img": "../../resource/images/2.jpg"
+      },
+      {
+        "link": "http://www.baidu.com",
+        "content": "FBI Director Chris Wray offered new details on Tuesday that directly contradict the White House’s account of the timeline leading to former White House staff secretary Rob Porter’s departure following allegations of domestic abuse from two of his ex-wives.",
+        "img": "../../resource/images/3.jpg"
+      },
+      {
+        "link": "http://www.bing.com",
+        "content": "This is the 4th one.",
+        "img": "../../resource/images/2.jpg"
+      }
+    ]
+  }
+}

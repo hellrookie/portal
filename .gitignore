@@ -1,4 +1,10 @@
-/node_modules/
-/.idea/
-/dist/
+#client
+/client/node_modules/
+/client/.idea/
+/client/dist/
 *.js.map
+
+#server
+/server/.idea/
+# test files
+/server/pi.php

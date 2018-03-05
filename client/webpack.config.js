@@ -82,7 +82,7 @@ function getPlugins() {
 module.exports = {
     entry: getEntry('./src', '.jsx'),
     output: {
-        path: path.join(__dirname, "dist"),
+        path: path.join(__dirname, "/dist"),
         filename: "js/[name].js",
     },
     module: {
@@ -133,7 +133,7 @@ module.exports = {
     plugins: getPlugins(),
     devtool: 'source-map',
     devServer: {
-        contentBase: path.join(__dirname, 'dist'),
+        contentBase: path.join(__dirname, '/dist'),
         port: 20001,
         openPage: 'home.html',
     }
