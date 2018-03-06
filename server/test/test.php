@@ -8,12 +8,14 @@
 include '../hellrookie.util/Config.php';
 
 $config = new \hellrookie\util\Config('../bin/config.json');
-echo "hello";
-$items = $config->getValue("slider/items");
-foreach ($items as $item)
-{
-    echo 'link: ' . $item['link'] . '</br>';
-    echo 'content: '. $item['content'] . '</br>';
-    echo 'img: ' . $item["img"] . '</br>';
-    echo '**************************************</br>';
-}
+$items = $config->getValue($_POST["path"]);
+$result = json_encode($items);
+echo $result;
+//$items = $config->getValue($_POST["path"]);
+//foreach ($items as $item)
+//{
+//    echo 'link: ' . $item['link'] . '</br>';
+//    echo 'content: '. $item['content'] . '</br>';
+//    echo 'img: ' . $item["img"] . '</br>';
+//    echo '**************************************</br>';
+//}
